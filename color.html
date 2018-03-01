@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style type="text/css">
+	input{
+		width: 80px;
+	}
+	span{
+		color: red;
+	}
+</style>
+<body>
+	16进制>>>RGB:
+	<input type="text" id="RGB">
+	<button id="toChangeRGB">转换</button>
+	<span id="rRGB"></span>
+	<hr>
+	RGB>>>16进制:
+	<input type="text" id="HEX1">
+	<input type="text" id="HEX2">
+	<input type="text" id="HEX3">
+	<button id="toChangeHEX">转换</button>
+	<span id="rHEX"></span>
+</body>
+
+<script type="text/javascript">
+
+	toChangeRGB.onclick= function(){
+			let str1= RGB.value;
+			rRGB.innerText = toRGB(str1);
+	}
+	toChangeHEX.onclick= function(){
+			let num1 = ~~HEX1.value;
+			let num2 = ~~HEX2.value;
+			let num3 = ~~HEX3.value;
+			rHEX.innerText = '#'+toHEX(num1)+toHEX(num2)+toHEX(num3);
+	}
+
+
+	function toHEX(num){
+		return num<16 ? '0'+ num.toString(16) : num.toString(16);
+	}
+	function toRGB(str){
+		if(str.indexOf('#') != -1){
+			str = str.substr(1);
+		}
+
+		let arr = [];
+		arr.push( parseInt(str.substr(0,2), 16) );
+		arr.push( parseInt(str.substr(2,2), 16) );
+		arr.push( parseInt(str.substr(4,2), 16) );
+
+		return arr.join();
+			
+	}
+</script>
+</html>
